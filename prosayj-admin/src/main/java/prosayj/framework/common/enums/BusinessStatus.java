@@ -2,6 +2,8 @@ package prosayj.framework.common.enums;
 
 /**
  * 操作状态
+ *
+ * @author ProSayJ
  */
 public enum BusinessStatus {
     /**

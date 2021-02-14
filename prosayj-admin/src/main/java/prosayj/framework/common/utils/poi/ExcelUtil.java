@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import prosayj.framework.common.annotation.Excel;
 import prosayj.framework.common.annotation.Excels;
-import prosayj.framework.common.config.AdminConfig;
+import prosayj.framework.config.properties.AdminConfigProperties;
 import prosayj.framework.common.core.domain.AjaxResult;
 import prosayj.framework.common.core.text.Convert;
 import prosayj.framework.common.exception.CustomException;
@@ -711,7 +711,7 @@ public class ExcelUtil<T> {
      * @param filename 文件名称
      */
     public String getAbsoluteFile(String filename) {
-        String downloadPath = AdminConfig.getDownloadPath() + filename;
+        String downloadPath = AdminConfigProperties.getDownloadPath() + filename;
         File desc = new File(downloadPath);
         if (!desc.getParentFile().exists()) {
             desc.getParentFile().mkdirs();

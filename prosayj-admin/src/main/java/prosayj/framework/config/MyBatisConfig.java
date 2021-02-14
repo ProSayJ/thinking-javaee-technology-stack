@@ -3,6 +3,7 @@ package prosayj.framework.config;
 import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +32,8 @@ import java.util.List;
  * @author ProSayJ
  */
 @Configuration
+// 指定要扫描的Mapper类的包的路径
+@MapperScan("prosayj.framework.**.mapper")
 public class MyBatisConfig {
     @Autowired
     private Environment env;
@@ -40,10 +43,10 @@ public class MyBatisConfig {
     public static String setTypeAliasesPackage(String typeAliasesPackage) {
         ResourcePatternResolver resolver = (ResourcePatternResolver) new PathMatchingResourcePatternResolver();
         MetadataReaderFactory metadataReaderFactory = new CachingMetadataReaderFactory(resolver);
-        List<String> allResult = new ArrayList<String>();
+        List<String> allResult = new ArrayList<>();
         try {
             for (String aliasesPackage : typeAliasesPackage.split(",")) {
-                List<String> result = new ArrayList<String>();
+                List<String> result = new ArrayList<>();
                 aliasesPackage = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX
                         + ClassUtils.convertClassNameToResourcePath(aliasesPackage.trim()) + "/" + DEFAULT_RESOURCE_PATTERN;
                 Resource[] resources = resolver.getResources(aliasesPackage);

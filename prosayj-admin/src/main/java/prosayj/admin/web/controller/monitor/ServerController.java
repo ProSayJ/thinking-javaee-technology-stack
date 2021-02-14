@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import prosayj.framework.common.core.domain.AjaxResult;
-import prosayj.framework.web.domain.Server;
+import prosayj.framework.monitor.MonitorServerDto;
 
 /**
  * 服务器监控
@@ -16,8 +16,8 @@ public class ServerController {
     @PreAuthorize("@ss.hasPermi('monitor:server:list')")
     @GetMapping()
     public AjaxResult getInfo() throws Exception {
-        Server server = new Server();
-        server.copyTo();
-        return AjaxResult.success(server);
+        MonitorServerDto monitorServerDto = new MonitorServerDto();
+        monitorServerDto.copyTo();
+        return AjaxResult.success(monitorServerDto);
     }
 }

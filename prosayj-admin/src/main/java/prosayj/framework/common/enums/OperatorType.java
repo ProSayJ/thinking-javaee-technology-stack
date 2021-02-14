@@ -2,6 +2,8 @@ package prosayj.framework.common.enums;
 
 /**
  * 操作人类别
+ *
+ * @author ProSayJ
  */
 public enum OperatorType {
     /**

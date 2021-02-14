@@ -21,7 +21,7 @@ import prosayj.framework.common.utils.poi.ExcelUtil;
 import prosayj.framework.system.service.ISysPostService;
 import prosayj.framework.system.service.ISysRoleService;
 import prosayj.framework.system.service.ISysUserService;
-import prosayj.framework.web.service.TokenService;
+import prosayj.framework.security.service.TokenService;
 
 import java.util.List;
 import java.util.stream.Collectors;

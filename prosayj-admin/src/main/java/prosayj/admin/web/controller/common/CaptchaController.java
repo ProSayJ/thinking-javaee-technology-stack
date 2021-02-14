@@ -1,6 +1,10 @@
 package prosayj.admin.web.controller.common;
 
 import com.google.code.kaptcha.Producer;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.FastByteArrayOutputStream;
@@ -24,25 +28,28 @@ import java.util.concurrent.TimeUnit;
  *
  * @author ProSayJ
  */
+@Api(tags = "验证码操作控制器")
 @RestController
 public class CaptchaController {
     @Resource(name = "captchaProducer")
     private Producer captchaProducer;
-
     @Resource(name = "captchaProducerMath")
     private Producer captchaProducerMath;
-
     @Autowired
     private RedisCache redisCache;
-
-    // 验证码类型
     @Value("${admin.captchaType}")
     private String captchaType;
 
     /**
      * 生成验证码
      */
+    @ApiOperation(value = "生成图像验证码", notes = "生成图像验证码")
     @GetMapping("/captchaImage")
+    @ApiResponses({
+            @ApiResponse(code = 0, message = "成功"),
+            @ApiResponse(code = -1, message = "失败"),
+            @ApiResponse(code = 999, message = "参数错误"),
+    })
     public AjaxResult getCode(HttpServletResponse response) throws IOException {
         // 保存验证码信息
         String uuid = IdUtils.simpleUUID();

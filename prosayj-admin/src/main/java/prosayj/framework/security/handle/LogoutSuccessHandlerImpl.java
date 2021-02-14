@@ -11,9 +11,9 @@ import prosayj.framework.common.core.domain.AjaxResult;
 import prosayj.framework.common.core.domain.model.LoginUser;
 import prosayj.framework.common.utils.ServletUtils;
 import prosayj.framework.common.utils.StringUtils;
-import prosayj.framework.manager.AsyncManager;
-import prosayj.framework.manager.factory.AsyncFactory;
-import prosayj.framework.web.service.TokenService;
+import prosayj.framework.config.support.async.AsyncManager;
+import prosayj.framework.config.support.async.AsyncFactory;
+import prosayj.framework.security.service.TokenService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

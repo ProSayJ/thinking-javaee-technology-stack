@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import prosayj.framework.common.annotation.Log;
-import prosayj.framework.common.config.AdminConfig;
+import prosayj.framework.config.properties.AdminConfigProperties;
 import prosayj.framework.common.core.controller.BaseController;
 import prosayj.framework.common.core.domain.AjaxResult;
 import prosayj.framework.common.core.domain.entity.SysUser;
@@ -14,7 +14,7 @@ import prosayj.framework.common.utils.SecurityUtils;
 import prosayj.framework.common.utils.ServletUtils;
 import prosayj.framework.common.utils.file.FileUploadUtils;
 import prosayj.framework.system.service.ISysUserService;
-import prosayj.framework.web.service.TokenService;
+import prosayj.framework.security.service.TokenService;
 
 import java.io.IOException;
 
@@ -96,7 +96,7 @@ public class SysProfileController extends BaseController {
     public AjaxResult avatar(@RequestParam("avatarfile") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
             LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
-            String avatar = FileUploadUtils.upload(AdminConfig.getAvatarPath(), file);
+            String avatar = FileUploadUtils.upload(AdminConfigProperties.getAvatarPath(), file);
             if (userService.updateUserAvatar(loginUser.getUsername(), avatar)) {
                 AjaxResult ajax = AjaxResult.success();
                 ajax.put("imgUrl", avatar);

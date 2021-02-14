@@ -2,7 +2,7 @@ package prosayj.framework.common.utils.file;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
-import prosayj.framework.common.config.AdminConfig;
+import prosayj.framework.config.properties.AdminConfigProperties;
 import prosayj.framework.common.constant.Constants;
 import prosayj.framework.common.exception.file.FileNameLengthLimitExceededException;
 import prosayj.framework.common.exception.file.FileSizeLimitExceededException;
@@ -31,7 +31,7 @@ public class FileUploadUtils {
     /**
      * 默认上传的地址
      */
-    private static String defaultBaseDir = AdminConfig.getProfile();
+    private static String defaultBaseDir = AdminConfigProperties.getProfile();
 
     public static void setDefaultBaseDir(String defaultBaseDir) {
         FileUploadUtils.defaultBaseDir = defaultBaseDir;
@@ -125,7 +125,7 @@ public class FileUploadUtils {
     }
 
     private static final String getPathFileName(String uploadDir, String fileName) throws IOException {
-        int dirLastIndex = AdminConfig.getProfile().length() + 1;
+        int dirLastIndex = AdminConfigProperties.getProfile().length() + 1;
         String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
         return Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
     }

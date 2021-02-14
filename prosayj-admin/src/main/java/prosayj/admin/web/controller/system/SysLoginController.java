@@ -13,9 +13,9 @@ import prosayj.framework.common.core.domain.model.LoginBody;
 import prosayj.framework.common.core.domain.model.LoginUser;
 import prosayj.framework.common.utils.ServletUtils;
 import prosayj.framework.system.service.ISysMenuService;
-import prosayj.framework.web.service.SysLoginService;
-import prosayj.framework.web.service.SysPermissionService;
-import prosayj.framework.web.service.TokenService;
+import prosayj.framework.security.authentication.SysUaaLoginService;
+import prosayj.framework.security.authorization.SysPermissionService;
+import prosayj.framework.security.service.TokenService;
 
 import java.util.List;
 import java.util.Set;
@@ -26,7 +26,7 @@ import java.util.Set;
 @RestController
 public class SysLoginController {
     @Autowired
-    private SysLoginService loginService;
+    private SysUaaLoginService loginService;
 
     @Autowired
     private ISysMenuService menuService;

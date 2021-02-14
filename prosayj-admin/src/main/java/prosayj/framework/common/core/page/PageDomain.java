@@ -5,6 +5,8 @@ import prosayj.framework.common.utils.StringUtils;
 
 /**
  * 分页数据
+ *
+ * @author ProSayJ
  */
 public class PageDomain {
     /**

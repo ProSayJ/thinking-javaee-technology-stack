@@ -3,7 +3,7 @@ package prosayj.framework.common.utils.file;
 import org.apache.poi.util.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import prosayj.framework.common.config.AdminConfig;
+import prosayj.framework.config.properties.AdminConfigProperties;
 import prosayj.framework.common.constant.Constants;
 import prosayj.framework.common.utils.StringUtils;
 
@@ -65,7 +65,7 @@ public class ImageUtils {
                 in = urlConnection.getInputStream();
             } else {
                 // 本机地址
-                String localPath = AdminConfig.getProfile();
+                String localPath = AdminConfigProperties.getProfile();
                 String downloadPath = localPath + StringUtils.substringAfter(url, Constants.RESOURCE_PREFIX);
                 in = new FileInputStream(downloadPath);
             }

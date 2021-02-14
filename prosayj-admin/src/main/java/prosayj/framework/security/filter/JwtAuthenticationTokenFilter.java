@@ -9,7 +9,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import prosayj.framework.common.core.domain.model.LoginUser;
 import prosayj.framework.common.utils.SecurityUtils;
 import prosayj.framework.common.utils.StringUtils;
-import prosayj.framework.web.service.TokenService;
+import prosayj.framework.security.service.TokenService;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

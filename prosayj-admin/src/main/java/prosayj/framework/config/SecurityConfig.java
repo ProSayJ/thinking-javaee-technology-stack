@@ -1,6 +1,7 @@
 package prosayj.framework.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,13 +21,16 @@ import prosayj.framework.security.handle.LogoutSuccessHandlerImpl;
 
 /**
  * spring security配置
+ *
+ * @author ProSayJ
  */
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
-     * 自定义用户认证逻辑
+     * 自定义用`b户认证逻辑
      */
     @Autowired
+    @Qualifier(value = "userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
 
     /**
@@ -56,8 +60,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * 解决 无法直接注入 AuthenticationManager
      *
-     * @return
-     * @throws Exception
+     * @return AuthenticationManager
+     * @throws Exception e
      */
     @Bean
     @Override

@@ -3,7 +3,7 @@ package prosayj.framework.common.utils.ip;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import prosayj.framework.common.config.AdminConfig;
+import prosayj.framework.config.properties.AdminConfigProperties;
 import prosayj.framework.common.constant.Constants;
 import prosayj.framework.common.utils.StringUtils;
 import prosayj.framework.common.utils.http.HttpUtils;
@@ -23,12 +23,11 @@ public class AddressUtils {
     public static final String UNKNOWN = "XX XX";
 
     public static String getRealAddressByIP(String ip) {
-        String address = UNKNOWN;
         // 内网不查询
         if (IpUtils.internalIp(ip)) {
             return "内网IP";
         }
-        if (AdminConfig.isAddressEnabled()) {
+        if (AdminConfigProperties.isAddressEnabled()) {
             try {
                 String rspStr = HttpUtils.sendGet(IP_URL, "ip=" + ip + "&json=true", Constants.GBK);
                 if (StringUtils.isEmpty(rspStr)) {
@@ -43,6 +42,6 @@ public class AddressUtils {
                 log.error("获取地理位置异常 {}", ip);
             }
         }
-        return address;
+        return UNKNOWN;
     }
 }

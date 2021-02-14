@@ -18,8 +18,8 @@ import prosayj.framework.common.utils.StringUtils;
 import prosayj.framework.common.utils.poi.ExcelUtil;
 import prosayj.framework.system.service.ISysRoleService;
 import prosayj.framework.system.service.ISysUserService;
-import prosayj.framework.web.service.SysPermissionService;
-import prosayj.framework.web.service.TokenService;
+import prosayj.framework.security.authorization.SysPermissionService;
+import prosayj.framework.security.service.TokenService;
 
 import java.util.List;
 

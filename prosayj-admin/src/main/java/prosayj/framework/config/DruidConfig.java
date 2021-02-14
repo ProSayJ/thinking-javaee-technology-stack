@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Primary;
 import prosayj.framework.common.enums.DataSourceType;
 import prosayj.framework.common.utils.spring.SpringUtils;
 import prosayj.framework.config.properties.DruidProperties;
-import prosayj.framework.datasource.DynamicDataSource;
+import prosayj.framework.config.support.datasource.DynamicDataSource;
 
 import javax.servlet.*;
 import javax.sql.DataSource;

@@ -16,7 +16,7 @@ import prosayj.framework.common.utils.SecurityUtils;
 import prosayj.framework.common.utils.ServletUtils;
 import prosayj.framework.common.utils.StringUtils;
 import prosayj.framework.system.service.ISysMenuService;
-import prosayj.framework.web.service.TokenService;
+import prosayj.framework.security.service.TokenService;
 
 import java.util.List;
 

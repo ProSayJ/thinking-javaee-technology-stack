@@ -2,6 +2,8 @@ package prosayj.framework.common.enums;
 
 /**
  * 业务操作类型
+ *
+ * @author ProSayJ
  */
 public enum BusinessType {
     /**
