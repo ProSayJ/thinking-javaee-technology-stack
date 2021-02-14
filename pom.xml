@@ -14,7 +14,6 @@
     <description>ProSayJ的j2ee技术栈整合</description>
 
     <modules>
-        <module>prosayj-framework-start</module>
         <module>prosayj-admin</module>
     </modules>
 
