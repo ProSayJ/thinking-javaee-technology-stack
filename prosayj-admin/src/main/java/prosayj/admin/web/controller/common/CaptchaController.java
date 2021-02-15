@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import prosayj.framework.common.constant.Constants;
 import prosayj.framework.common.core.domain.AjaxResult;
 import prosayj.framework.common.core.redis.RedisCache;
-import prosayj.framework.common.utils.sign.Base64;
+import prosayj.framework.common.utils.security.sign.Base64;
 import prosayj.framework.common.utils.uuid.IdUtils;
 
 import javax.annotation.Resource;

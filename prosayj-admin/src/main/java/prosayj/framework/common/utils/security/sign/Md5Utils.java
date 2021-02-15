@@ -1,4 +1,4 @@
-package prosayj.framework.common.utils.sign;
+package prosayj.framework.common.utils.security.sign;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

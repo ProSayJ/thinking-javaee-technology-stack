@@ -1,4 +1,4 @@
-package prosayj.framework.common.utils.sign;
+package prosayj.framework.common.utils.security.sign;
 
 /**
  * Base64工具类

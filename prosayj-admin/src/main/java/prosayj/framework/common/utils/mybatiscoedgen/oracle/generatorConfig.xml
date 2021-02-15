@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 数据库驱 -->
+	<classPathEntry location="ojdbc-1.4.jar"/>
+
+	<context id="dept">
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->  
+			<property name="suppressDate" value="true"/>
+			<property name="suppressAllComments" value="true"/>
+		</commentGenerator>
+		<jdbcConnection
+				connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:orcl"
+				driverClass="oracle.jdbc.OracleDriver" userId="scott"
+				password="tiger"/>
+		 <javaTypeResolver>  
+              <property name="forceBigDecimals" value="false"/>  
+         </javaTypeResolver> 
+
+		<!-- 生成模型的包名和位置
+
+	--> 
+		<javaModelGenerator targetPackage="cn.bunuo.scf.dao.dept.domain" targetProject="src/main/java">
+			 <property name="enableSubPackages" value="true"/>  
+ 			 <property name="trimStrings" value="true"/>  
+		</javaModelGenerator>
+		
+		<!-- 生成模型的包名和位置--> 
+		<sqlMapGenerator targetPackage="mapper/gen/dept" targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true"/>  
+		</sqlMapGenerator>
+
+		 <!-- 生成DAO的包名和位置-->
+		<javaClientGenerator targetPackage="cn.bunuo.scf.dao.dept.mapper"
+							 targetProject="src/main/java"
+							 type="XMLMAPPER">
+			<property name="enableSubPackages" value="true"/> 			
+		</javaClientGenerator>					 
+		
+		<!-- 要生成哪些表-->
+		<table tableName="emp" domainObjectName="DeptDomain" enableInsert="true" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+             enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+	</context>
+
+</generatorConfiguration>
