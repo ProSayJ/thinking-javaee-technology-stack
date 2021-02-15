@@ -9,6 +9,8 @@ import prosayj.framework.common.exception.CustomException;
 
 /**
  * 安全服务工具类
+ *
+ * @author yangjian
  */
 public class SecurityUtils {
     /**

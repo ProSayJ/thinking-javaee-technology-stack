@@ -9,7 +9,7 @@ import oshi.software.os.FileSystem;
 import oshi.software.os.OSFileStore;
 import oshi.software.os.OperatingSystem;
 import oshi.util.Util;
-import prosayj.framework.common.utils.Arith;
+import prosayj.framework.common.utils.BigDecimalUtil;
 import prosayj.framework.common.utils.ip.IpUtils;
 import prosayj.framework.monitor.domain.server.*;
 
@@ -181,7 +181,7 @@ public class MonitorServerDto {
             sysFile.setTotal(convertFileSize(total));
             sysFile.setFree(convertFileSize(free));
             sysFile.setUsed(convertFileSize(used));
-            sysFile.setUsage(Arith.mul(Arith.div(used, total, 4), 100));
+            sysFile.setUsage(BigDecimalUtil.mul(BigDecimalUtil.div(used, total, 4), 100));
             sysFiles.add(sysFile);
         }
     }

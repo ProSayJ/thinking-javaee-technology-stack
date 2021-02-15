@@ -121,7 +121,7 @@ public class LogAspect {
      *
      * @param log     日志
      * @param operLog 操作日志
-     * @throws Exception
+     * @throws Exception Exception
      */
     public void getControllerMethodDescription(JoinPoint joinPoint, Log log, SysOperLog operLog) throws Exception {
         // 设置action动作
@@ -157,11 +157,10 @@ public class LogAspect {
     /**
      * 是否存在注解，如果存在就获取
      */
-    private Log getAnnotationLog(JoinPoint joinPoint) throws Exception {
+    private Log getAnnotationLog(JoinPoint joinPoint) {
         Signature signature = joinPoint.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
         Method method = methodSignature.getMethod();
-
         if (method != null) {
             return method.getAnnotation(Log.class);
         }
@@ -172,16 +171,16 @@ public class LogAspect {
      * 参数拼装
      */
     private String argsArrayToString(Object[] paramsArray) {
-        String params = "";
+        StringBuilder params = new StringBuilder();
         if (paramsArray != null && paramsArray.length > 0) {
-            for (int i = 0; i < paramsArray.length; i++) {
-                if (!isFilterObject(paramsArray[i])) {
-                    Object jsonObj = JSON.toJSON(paramsArray[i]);
-                    params += jsonObj.toString() + " ";
+            for (Object o : paramsArray) {
+                if (!isFilterObject(o)) {
+                    Object jsonObj = JSON.toJSON(o);
+                    params.append(jsonObj.toString()).append(" ");
                 }
             }
         }
-        return params.trim();
+        return params.toString().trim();
     }
 
     /**
@@ -197,13 +196,13 @@ public class LogAspect {
             return clazz.getComponentType().isAssignableFrom(MultipartFile.class);
         } else if (Collection.class.isAssignableFrom(clazz)) {
             Collection collection = (Collection) o;
-            for (Iterator iter = collection.iterator(); iter.hasNext(); ) {
-                return iter.next() instanceof MultipartFile;
+            for (Object value : collection) {
+                return value instanceof MultipartFile;
             }
         } else if (Map.class.isAssignableFrom(clazz)) {
             Map map = (Map) o;
-            for (Iterator iter = map.entrySet().iterator(); iter.hasNext(); ) {
-                Map.Entry entry = (Map.Entry) iter.next();
+            for (Object value : map.entrySet()) {
+                Map.Entry entry = (Map.Entry) value;
                 return entry.getValue() instanceof MultipartFile;
             }
         }

@@ -8,17 +8,15 @@ import java.math.RoundingMode;
  *
  * @author yangjian
  */
-public class Arith {
+public class BigDecimalUtil {
 
     /**
      * 默认除法运算精度
      */
     private static final int DEF_DIV_SCALE = 10;
 
-    /**
-     * 这个类不能实例化
-     */
-    private Arith() {
+
+    private BigDecimalUtil() {
     }
 
     /**

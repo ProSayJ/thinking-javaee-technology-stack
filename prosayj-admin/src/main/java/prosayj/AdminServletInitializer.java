@@ -5,6 +5,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 /**
  * web容器中进行部署
+ *
+ * @author yangjian
  */
 public class AdminServletInitializer extends SpringBootServletInitializer {
     @Override

@@ -11,7 +11,7 @@ import prosayj.framework.common.core.domain.AjaxResult;
 import prosayj.framework.common.core.page.PageDomain;
 import prosayj.framework.common.core.page.TableDataInfo;
 import prosayj.framework.common.core.page.TableSupport;
-import prosayj.framework.common.utils.DateUtils;
+import prosayj.framework.common.utils.DateUtil;
 import prosayj.framework.common.utils.StringUtils;
 import prosayj.framework.common.utils.sql.SqlUtil;
 
@@ -36,7 +36,7 @@ public class BaseController {
         binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
-                setValue(DateUtils.parseDate(text));
+                setValue(DateUtil.parseDate(text));
             }
         });
     }

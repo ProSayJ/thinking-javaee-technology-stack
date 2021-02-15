@@ -69,6 +69,8 @@ public class IpUtils {
                 switch (b1) {
                     case SECTION_6:
                         return true;
+                    default: {
+                    }
                 }
             default:
                 return false;

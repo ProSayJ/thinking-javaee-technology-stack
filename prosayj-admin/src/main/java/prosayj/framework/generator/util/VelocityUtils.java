@@ -3,7 +3,7 @@ package prosayj.framework.generator.util;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.velocity.VelocityContext;
 import prosayj.framework.common.constant.GenConstants;
-import prosayj.framework.common.utils.DateUtils;
+import prosayj.framework.common.utils.DateUtil;
 import prosayj.framework.common.utils.StringUtils;
 import prosayj.framework.generator.domain.GenTable;
 import prosayj.framework.generator.domain.GenTableColumn;
@@ -58,7 +58,7 @@ public class VelocityUtils {
         velocityContext.put("basePackage", getPackagePrefix(packageName));
         velocityContext.put("packageName", packageName);
         velocityContext.put("author", genTable.getFunctionAuthor());
-        velocityContext.put("datetime", DateUtils.getDate());
+        velocityContext.put("datetime", DateUtil.getDate());
         velocityContext.put("pkColumn", genTable.getPkColumn());
         velocityContext.put("importList", getImportList(genTable));
         velocityContext.put("permissionPrefix", getPermissionPrefix(moduleName, businessName));

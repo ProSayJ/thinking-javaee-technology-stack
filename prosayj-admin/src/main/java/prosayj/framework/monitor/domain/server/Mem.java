@@ -1,7 +1,7 @@
 package prosayj.framework.monitor.domain.server;
 
 
-import prosayj.framework.common.utils.Arith;
+import prosayj.framework.common.utils.BigDecimalUtil;
 
 /**
  * 內存相关信息
@@ -25,7 +25,7 @@ public class Mem {
     private double free;
 
     public double getTotal() {
-        return Arith.div(total, (1024 * 1024 * 1024), 2);
+        return BigDecimalUtil.div(total, (1024 * 1024 * 1024), 2);
     }
 
     public void setTotal(long total) {
@@ -33,7 +33,7 @@ public class Mem {
     }
 
     public double getUsed() {
-        return Arith.div(used, (1024 * 1024 * 1024), 2);
+        return BigDecimalUtil.div(used, (1024 * 1024 * 1024), 2);
     }
 
     public void setUsed(long used) {
@@ -41,7 +41,7 @@ public class Mem {
     }
 
     public double getFree() {
-        return Arith.div(free, (1024 * 1024 * 1024), 2);
+        return BigDecimalUtil.div(free, (1024 * 1024 * 1024), 2);
     }
 
     public void setFree(long free) {
@@ -49,6 +49,6 @@ public class Mem {
     }
 
     public double getUsage() {
-        return Arith.mul(Arith.div(used, total, 4), 100);
+        return BigDecimalUtil.mul(BigDecimalUtil.div(used, total, 4), 100);
     }
 }

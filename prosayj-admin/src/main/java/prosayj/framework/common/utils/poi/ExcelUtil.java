@@ -13,7 +13,7 @@ import prosayj.framework.config.properties.AdminConfigProperties;
 import prosayj.framework.common.core.domain.AjaxResult;
 import prosayj.framework.common.core.text.Convert;
 import prosayj.framework.common.exception.CustomException;
-import prosayj.framework.common.utils.DateUtils;
+import prosayj.framework.common.utils.DateUtil;
 import prosayj.framework.common.utils.DictUtils;
 import prosayj.framework.common.utils.StringUtils;
 import prosayj.framework.common.utils.file.FileTypeUtils;
@@ -137,7 +137,6 @@ public class ExcelUtil<T> {
             // 如果传入的sheet名不存在则默认指向第1个sheet.
             sheet = wb.getSheetAt(0);
         }
-
         if (sheet == null) {
             throw new IOException("文件sheet不存在");
         }
@@ -180,7 +179,6 @@ public class ExcelUtil<T> {
                 T entity = null;
                 for (Map.Entry<Integer, Field> entry : fieldsMap.entrySet()) {
                     Object val = this.getCellValue(row, entry.getKey());
-
                     // 如果不存在实例则新建.
                     entity = (entity == null ? clazz.newInstance() : entity);
                     // 从map中得到对应列的field.
@@ -194,7 +192,7 @@ public class ExcelUtil<T> {
                         } else {
                             String dateFormat = field.getAnnotation(Excel.class).dateFormat();
                             if (StringUtils.isNotEmpty(dateFormat)) {
-                                val = DateUtils.parseDateToStr(dateFormat, (Date) val);
+                                val = DateUtil.parseDateToStr(dateFormat, (Date) val);
                             } else {
                                 val = Convert.toStr(val);
                             }
@@ -211,9 +209,9 @@ public class ExcelUtil<T> {
                         val = Convert.toBigDecimal(val);
                     } else if (Date.class == fieldType) {
                         if (val instanceof String) {
-                            val = DateUtils.parseDate(val);
+                            val = DateUtil.parseDate(val);
                         } else if (val instanceof Double) {
-                            val = DateUtil.getJavaDate((Double) val);
+                            val = org.apache.poi.ss.usermodel.DateUtil.getJavaDate((Double) val);
                         }
                     } else if (Boolean.TYPE == fieldType || Boolean.class == fieldType) {
                         val = Convert.toBool(val, false);
@@ -272,7 +270,6 @@ public class ExcelUtil<T> {
             double sheetNo = Math.ceil(list.size() / sheetSize);
             for (int index = 0; index <= sheetNo; index++) {
                 createSheet(sheetNo, index);
-
                 // 产生一行
                 Row row = sheet.createRow(0);
                 int column = 0;
@@ -496,7 +493,7 @@ public class ExcelUtil<T> {
             if (attr.isExport()) {
                 // 创建cell
                 cell = row.createCell(column);
-                int align = attr.align().value();
+                int align = attr.align().getCode();
                 cell.setCellStyle(styles.get("data" + (align >= 1 && align <= 3 ? align : "")));
 
                 // 用于读取对象中的属性
@@ -506,7 +503,7 @@ public class ExcelUtil<T> {
                 String separator = attr.separator();
                 String dictType = attr.dictType();
                 if (StringUtils.isNotEmpty(dateFormat) && StringUtils.isNotNull(value)) {
-                    cell.setCellValue(DateUtils.parseDateToStr(dateFormat, (Date) value));
+                    cell.setCellValue(DateUtil.parseDateToStr(dateFormat, (Date) value));
                 } else if (StringUtils.isNotEmpty(readConverterExp) && StringUtils.isNotNull(value)) {
                     cell.setCellValue(convertByExp(Convert.toStr(value), readConverterExp, separator));
                 } else if (StringUtils.isNotEmpty(dictType) && StringUtils.isNotNull(value)) {
@@ -851,8 +848,8 @@ public class ExcelUtil<T> {
             if (StringUtils.isNotNull(cell)) {
                 if (cell.getCellType() == CellType.NUMERIC || cell.getCellType() == CellType.FORMULA) {
                     val = cell.getNumericCellValue();
-                    if (DateUtil.isCellDateFormatted(cell)) {
-                        val = DateUtil.getJavaDate((Double) val); // POI Excel 日期格式转换
+                    if (org.apache.poi.ss.usermodel.DateUtil.isCellDateFormatted(cell)) {
+                        val = org.apache.poi.ss.usermodel.DateUtil.getJavaDate((Double) val); // POI Excel 日期格式转换
                     } else {
                         if ((Double) val % 1 != 0) {
                             val = new BigDecimal(val.toString());

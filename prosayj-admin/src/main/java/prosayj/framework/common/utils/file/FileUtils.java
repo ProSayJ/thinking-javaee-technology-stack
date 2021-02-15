@@ -22,7 +22,6 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
      *
      * @param filePath 文件路径
      * @param os       输出流
-     * @return
      */
     public static void writeBytes(String filePath, OutputStream os) throws IOException {
         FileInputStream fis = null;
@@ -37,8 +36,6 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
             while ((length = fis.read(b)) > 0) {
                 os.write(b, 0, length);
             }
-        } catch (IOException e) {
-            throw e;
         } finally {
             if (os != null) {
                 try {
@@ -61,7 +58,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
      * 删除文件
      *
      * @param filePath 文件
-     * @return
+     * @return boolean
      */
     public static boolean deleteFile(String filePath) {
         boolean flag = false;
@@ -137,20 +134,16 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
      *
      * @param response     响应对象
      * @param realFileName 真实文件名
-     * @return
      */
     public static void setAttachmentResponseHeader(HttpServletResponse response, String realFileName) throws UnsupportedEncodingException {
         String percentEncodedFileName = percentEncode(realFileName);
-
-        StringBuilder contentDispositionValue = new StringBuilder();
-        contentDispositionValue.append("attachment; filename=")
-                .append(percentEncodedFileName)
-                .append(";")
-                .append("filename*=")
-                .append("utf-8''")
-                .append(percentEncodedFileName);
-
-        response.setHeader("Content-disposition", contentDispositionValue.toString());
+        String contentDispositionValue = "attachment; filename=" +
+                percentEncodedFileName +
+                ";" +
+                "filename*=" +
+                "utf-8''" +
+                percentEncodedFileName;
+        response.setHeader("Content-disposition", contentDispositionValue);
     }
 
     /**

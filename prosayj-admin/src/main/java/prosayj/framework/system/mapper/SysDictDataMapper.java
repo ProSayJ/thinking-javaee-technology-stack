@@ -1,5 +1,6 @@
 package prosayj.framework.system.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import prosayj.framework.common.core.domain.entity.SysDictData;
 
@@ -10,6 +11,7 @@ import java.util.List;
  *
  * @author yangjian
  */
+@Mapper
 public interface SysDictDataMapper {
     /**
      * 根据条件分页查询字典数据

@@ -1,7 +1,7 @@
 package prosayj.framework.monitor.domain.server;
 
 
-import prosayj.framework.common.utils.Arith;
+import prosayj.framework.common.utils.BigDecimalUtil;
 
 /**
  * CPU相关信息
@@ -48,7 +48,7 @@ public class Cpu {
     }
 
     public double getTotal() {
-        return Arith.round(Arith.mul(total, 100), 2);
+        return BigDecimalUtil.round(BigDecimalUtil.mul(total, 100), 2);
     }
 
     public void setTotal(double total) {
@@ -56,7 +56,7 @@ public class Cpu {
     }
 
     public double getSys() {
-        return Arith.round(Arith.mul(sys / total, 100), 2);
+        return BigDecimalUtil.round(BigDecimalUtil.mul(sys / total, 100), 2);
     }
 
     public void setSys(double sys) {
@@ -64,7 +64,7 @@ public class Cpu {
     }
 
     public double getUsed() {
-        return Arith.round(Arith.mul(used / total, 100), 2);
+        return BigDecimalUtil.round(BigDecimalUtil.mul(used / total, 100), 2);
     }
 
     public void setUsed(double used) {
@@ -72,7 +72,7 @@ public class Cpu {
     }
 
     public double getWait() {
-        return Arith.round(Arith.mul(wait / total, 100), 2);
+        return BigDecimalUtil.round(BigDecimalUtil.mul(wait / total, 100), 2);
     }
 
     public void setWait(double wait) {
@@ -80,7 +80,7 @@ public class Cpu {
     }
 
     public double getFree() {
-        return Arith.round(Arith.mul(free / total, 100), 2);
+        return BigDecimalUtil.round(BigDecimalUtil.mul(free / total, 100), 2);
     }
 
     public void setFree(double free) {
