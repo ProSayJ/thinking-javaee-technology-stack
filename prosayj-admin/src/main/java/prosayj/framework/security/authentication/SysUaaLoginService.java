@@ -60,7 +60,7 @@ public class SysUaaLoginService {
         // 用户验证
         Authentication authentication = null;
         try {
-            // 该方法会去调用UserDetailsServiceImpl.loadUserByUsername
+            // 该方法会去调用 UserDetailsServiceImpl.loadUserByUsername
             authentication = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (Exception e) {
